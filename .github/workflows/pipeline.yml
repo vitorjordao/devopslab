@@ -26,7 +26,7 @@ jobs:
         run: |
           coverage run --source=app -m pytest test.py
           coverage report -m
-          coverage xml -i
+          coverage xml -o cov/coverage.xml
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
