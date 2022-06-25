@@ -24,15 +24,9 @@ jobs:
 
       - name: Unit Test
         run: |
-          coverage run -m unittest -v test
-          coverage xml -o cov/coverage.xml
-      
-      - name: fix code coverage paths
-        run: |
-          pwd
-          ls /home/runner/work/devopslab/devopslab
-          ls cov/
-          sed -i 's/\/home\/runner\/work\/devopslab\/devopslab\//\/github\/workspace\//g' cov/coverage.xml
+          coverage run --source=app -m pytest test.py
+          coverage report -m
+          coverage xml -i
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
